@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Droid+Serif');
+@font-face {
+  font-family: 'Droid Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/droidserif/v13/tDbI2oqRg1oM3QBjjcaDkOr9rAA.ttf) format('truetype');
+}
 html {
   margin: 0;
   padding: 0;
@@ -14,7 +19,7 @@ body {
   text-align: center;
   border-bottom: 1px solid salmon;
   color: #D81B60;
-  letter-spacing: .003em;
+  letter-spacing: 0.003em;
 }
 .header i {
   color: red;
