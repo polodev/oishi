@@ -38,16 +38,20 @@ So every course quietly makes the medical life look attractive:
 3. In `build.py`: add `("<subject>", "101")` to `OPEN`, add a `course_page_<subject>()` (copy `course_page_english`), call the builder in the `__main__` loop. Locked slots `102`, `103` are already shown automatically.
 4. `python3 build.py`, then check on a phone-sized screen (Playwright 390×844, `isMobile`, `hasTouch`): no horizontal overflow, swipe, quiz, no console errors.
 
-## Suggested roadmap (edit freely; confirm HSC book chapters with the owner)
-| Subject | 101 | 102 | 103 |
+## Status and roadmap
+All seven subjects now have a live **101** (English 20 days, the other six 20 chapters each, class-five language, gradually harder). Locked **102 / 103** slots are shown on every subject page until their material exists.
+
+| Subject | 101 (live) | Suggested 102 | Suggested 103 |
 |---|---|---|---|
-| English | Stories about her life (**live**) | Reading medical/science passages, writing short paragraphs | Speaking & listening, interviews, formal letters, medical admission English |
-| Biology | Cell, tissue, human body systems told as stories | Genetics & DNA, immunity, plant biology | Microbes, evolution, ecology — with clinic scenes |
-| Physics | **Live (20 chapters):** matter, motion, speed, force, friction, gravity, pressure, energy, heat, sound, light, lenses, electricity, magnets, physics in medicine | Light & optics (glasses), waves, sound (ultrasound) | Electricity, magnetism, modern physics (X-ray) |
-| Chemistry | Atoms, acids/bases, pH of the stomach | Reactions, solutions, organic basics | Biochemistry: vitamins, proteins, medicines |
-| Math | Numbers, algebra via dosage and BMI | Functions, trigonometry, geometry | Statistics, probability, calculus basics |
-| Bangla | Reading and writing short essays with warm themes | Grammar, composition, letters | Literature appreciation |
-| ICT | Computers, internet, safety | Spreadsheets for patient records, databases | Programming basics, telemedicine, health apps |
+| English | Stories about her life | Reading medical/science passages, short paragraphs | Speaking, interviews, formal letters, medical admission English |
+| Physics | Matter → motion → force → heat → sound → light → electricity → magnets → physics in medicine | HSC-level mechanics and waves with medical examples | Optics, electricity, modern physics (X-ray, MRI) in depth |
+| Chemistry | Atoms, mixtures, acids/bases, pH, rusting, soap, food, medicines | Reactions, solutions, organic basics | Biochemistry: vitamins, proteins, medicine chemistry |
+| Biology | Cell → plant → animal → body systems → germs → vaccines → genes → ecosystem | Genetics, immunity, plant biology in depth | Microbiology, evolution, human physiology |
+| Math | Numbers → fractions → percentages → algebra start → geometry → probability and BMI | Functions, trigonometry, geometry | Statistics, probability, calculus basics |
+| Bangla | Letters → words → parts of speech → writing (paragraph, letter, application, composition) | Grammar in depth, composition | Literature appreciation |
+| ICT | Computer basics → internet → office tools → safety → telemedicine → AI | Spreadsheets/databases for records | Programming basics, health apps |
+
+Before writing a 102/103, confirm the HSC book chapters with the owner.
 
 ## Privacy
 The repo and GitHub Pages site are public. They contain a minor's photo and full name and her family's names. Keep surnames of other relatives, addresses, phone numbers and school names out of the content. See README "Privacy".

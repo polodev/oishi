@@ -7,6 +7,11 @@ import shutil
 
 from engine import BN_NAME, FULL_NAME, ROOT, avatar, bn, esc, page, write
 import english101 as E
+import bangla101 as BA
+import biology101 as BI
+import chemistry101 as CH
+import ict101 as IC
+import math101 as MA
 import physics101 as PH
 import site_english
 import site_subject
@@ -29,7 +34,7 @@ SUBJECTS = {
                 courses={"101": ("ICT 101", "শুরুর ধারণা"), "102": ("ICT 102", "পরের ধাপ"), "103": ("ICT 103", "আরও এগিয়ে")}),
 }
 CHAPTER_META = "২০ অধ্যায় · গল্প, ঘরে করার পরীক্ষা, কুইজ"
-MODULES = {"physics": PH}   # chapter-style subjects; filled below as each course is written
+MODULES = {"physics": PH, "chemistry": CH, "biology": BI, "math": MA, "bangla": BA, "ict": IC}   # chapter-style subjects; filled below as each course is written
 OPEN = {("english", "101")} | {(k, "101") for k in MODULES}
 ENGLISH_META = "২০ অধ্যায় · ২০০ শব্দ · ৪০০ বাক্য"
 
