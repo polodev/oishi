@@ -9,7 +9,7 @@ Content rule: whenever a doctor of her parents is meant, always say "homeopathic
 from engine import parse_pairs
 
 COURSE = dict(slug="101", lang="english", title="English 101", tag="গল্পে গল্পে ইংরেজি",
-              sub="প্রতিটি Day-তে একটা ছোট গল্প, ১০টি শব্দ আর ২০টি বাক্য",
+              sub="প্রতিটি অধ্যায়ে একটা ছোট গল্প, ১০টি শব্দ আর ২০টি বাক্য",
               lead="ঐশীর জীবনের গল্প পড়তে পড়তে ইংরেজি শিখো — সহজ শব্দ, রোজকার বাক্য, শুনে শুনে। পড়াশোনা, জীববিজ্ঞান আর হোমিওপ্যাথির কথায়।")
 
 DAYS = []

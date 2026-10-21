@@ -1,6 +1,6 @@
 # Oishi — পড়ার ঘর
 
-Mobile-first Bangla learning site for Oishi Debnath. Subjects: English (live: English 101, 20 Days), Physics, Chemistry, Biology, Math, Bangla, ICT (courses locked until written).
+Mobile-first Bangla learning site for Oishi Debnath. Subjects: English (live: English 101, 20 chapters), Physics, Chemistry, Biology, Math, Bangla, ICT (courses locked until written).
 
 ```bash
 python3 build.py   # regenerates all pages

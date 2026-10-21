@@ -258,7 +258,7 @@
       st.textContent = n ? '🔥 ' + nb + ' দিন টানা পড়েছ — আজকেও ৫ মিনিট!' : '😴 আজ শুধু ৫ মিনিট — একটা স্লাইড দেখলেই শুরু হয়ে যায়!';
     }
     var pt = document.getElementById('progress-text');
-    if (pt) pt.textContent = B(done) + ' / ' + B(total) + ' ' + (pt.getAttribute('data-unit') || 'দিন') + ' শেষ';
+    if (pt) pt.textContent = B(done) + ' / ' + B(total) + ' ' + (pt.getAttribute('data-unit') || 'অধ্যায়') + ' শেষ';
     var cont = document.getElementById('continue');
     if (cont && firstOpen) {
       cont.setAttribute('href', firstOpen.getAttribute('href'));

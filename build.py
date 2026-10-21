@@ -9,7 +9,7 @@ from engine import BN_NAME, FULL_NAME, ROOT, avatar, bn, esc, page, write
 import english101 as E
 import physics101 as PH
 import site_english
-import site_physics
+import site_subject
 
 # slug -> subject. `open` = courses that exist (slug of course -> module); every other course shows as locked.
 SUBJECTS = {
@@ -28,13 +28,14 @@ SUBJECTS = {
     "ict": dict(name="ICT", bn_name="তথ্য ও যোগাযোগ প্রযুক্তি", badge="💻", intro="HSC ICT — বাংলায়, ধাপে ধাপে।",
                 courses={"101": ("ICT 101", "শুরুর ধারণা"), "102": ("ICT 102", "পরের ধাপ"), "103": ("ICT 103", "আরও এগিয়ে")}),
 }
-OPEN = {("english", "101"), ("physics", "101")}
-PHYSICS_META = "২০ অধ্যায় · গল্প, ঘরে করার পরীক্ষা, কুইজ"
-ENGLISH_META = "২০ Day · ২০০ শব্দ · ৪০০ বাক্য"
+CHAPTER_META = "২০ অধ্যায় · গল্প, ঘরে করার পরীক্ষা, কুইজ"
+MODULES = {"physics": PH}   # chapter-style subjects; filled below as each course is written
+OPEN = {("english", "101")} | {(k, "101") for k in MODULES}
+ENGLISH_META = "২০ অধ্যায় · ২০০ শব্দ · ৪০০ বাক্য"
 
 
 def subject_meta(k):
-    return ENGLISH_META if k == "english" else PHYSICS_META if k == "physics" else "🔒 শীঘ্রই আসছে"
+    return ENGLISH_META if k == "english" else CHAPTER_META if k in MODULES else "🔒 শীঘ্রই আসছে"
 
 
 def home():
@@ -52,9 +53,9 @@ def subject_page(k, v):
     cards = []
     for slug, (title, tag) in v["courses"].items():
         if (k, slug) in OPEN:
-            c = E.COURSE if k == "english" else PH.COURSE
+            c = E.COURSE if k == "english" else MODULES[k].COURSE
             cards.append(f'<a class="card course" href="{slug}/index.html"><span class="tag">{slug}</span><b>{c["title"]} — {c["tag"]}</b>'
-                         f'<span class="sub">{c["sub"]}</span><span class="sub">{ENGLISH_META if k == "english" else PHYSICS_META}</span></a>')
+                         f'<span class="sub">{c["sub"]}</span><span class="sub">{ENGLISH_META if k == "english" else CHAPTER_META}</span></a>')
         else:
             cards.append(f'<div class="card course locked"><span class="tag">{slug}</span><b>{title}</b><span class="sub">🔒 শীঘ্রই আসছে</span></div>')
     body = (f'<header class="hero"><div class="in hero-grid"><div><a class="back" href="../index.html">← হোম</a><h1>{v["name"]} — {v["bn_name"]}</h1><p>{v["intro"]}</p></div>{avatar("../", "hero-ava sm")}</div></header>'
@@ -67,29 +68,30 @@ def course_page_english():
     days = []
     for n in range(1, 21):
         d = E.DAYS[n - 1]
-        days.append(f'<a class="day" data-deckkey="english/101/day-{n:02d}" href="day-{n:02d}/index.html"><span class="n">Day<b>{bn(n)}</b></span>'
+        days.append(f'<a class="day" data-deckkey="english/101/day-{n:02d}" href="day-{n:02d}/index.html"><span class="n">অধ্যায়<b>{bn(n)}</b></span>'
                     f'<span class="t"><b>{esc(d["en"])}</b><span>{esc(d["bn"])} · ১০ শব্দ · ২০ বাক্য</span></span><span class="tick">✓</span></a>')
     body = (f'<header class="hero"><div class="in hero-grid"><div><a class="back" href="../index.html">← {v["name"]}</a><h1>{c["title"]}</h1><p>{c["lead"]}</p></div>{avatar("../../", "hero-ava sm")}</div></header>'
             f'<main class="wrap"><div class="card"><div class="bar"><i id="progress"></i></div>'
-            f'<p class="note" id="streak"></p><p class="note" id="progress-text">০ / {bn(20)} দিন শেষ</p>'
+            f'<p class="note" id="streak"></p><p class="note" id="progress-text">০ / {bn(20)} অধ্যায় শেষ</p>'
             f'<p style="text-align:center;margin-top:10px"><a class="btn" id="continue" href="day-01/index.html">▶ শুরু করুন</a></p></div>'
             f'<div class="days">{"".join(days)}</div></main>')
     write("english/101/index.html", page(f"{c['title']} — {c['tag']}", body, 2, "en"))
 
 
-def course_page_physics():
-    v, c = SUBJECTS["physics"], PH.COURSE
-    chapters = []
-    for ch in PH.CHAPTERS:
+def course_page_chapters(k):
+    v, mod = SUBJECTS[k], MODULES[k]
+    c, chs = mod.COURSE, mod.CHAPTERS
+    items = []
+    for ch in chs:
         n = ch["n"]
-        chapters.append(f'<a class="day" data-deckkey="physics/101/ch-{n:02d}" href="ch-{n:02d}/index.html"><span class="n">অধ্যায়<b>{bn(n)}</b></span>'
-                        f'<span class="t"><b>{esc(ch["title"])}</b><span>{esc(ch["en"])}</span></span><span class="tick">✓</span></a>')
+        items.append(f'<a class="day" data-deckkey="{k}/101/ch-{n:02d}" href="ch-{n:02d}/index.html"><span class="n">অধ্যায়<b>{bn(n)}</b></span>'
+                     f'<span class="t"><b>{esc(ch["title"])}</b><span>{esc(ch["en"])}</span></span><span class="tick">✓</span></a>')
     body = (f'<header class="hero"><div class="in hero-grid"><div><a class="back" href="../index.html">← {v["name"]}</a><h1>{c["title"]}</h1><p>{c["lead"]}</p></div>{avatar("../../", "hero-ava sm")}</div></header>'
             f'<main class="wrap"><div class="card"><div class="bar"><i id="progress"></i></div>'
-            f'<p class="note" id="streak"></p><p class="note" id="progress-text" data-unit="অধ্যায়">০ / {bn(len(PH.CHAPTERS))} অধ্যায় শেষ</p>'
+            f'<p class="note" id="streak"></p><p class="note" id="progress-text" data-unit="অধ্যায়">০ / {bn(len(chs))} অধ্যায় শেষ</p>'
             f'<p style="text-align:center;margin-top:10px"><a class="btn" id="continue" href="ch-01/index.html">▶ শুরু করুন</a></p></div>'
-            f'<div class="days">{"".join(chapters)}</div></main>')
-    write("physics/101/index.html", page(f"{c['title']} — {c['tag']}", body, 2, "sub"))
+            f'<div class="days">{"".join(items)}</div></main>')
+    write(f"{k}/101/index.html", page(f"{c['title']} — {c['tag']}", body, 2, "sub"))
 
 
 def not_found():
@@ -113,10 +115,12 @@ if __name__ == "__main__":
     for k, v in SUBJECTS.items():
         subject_page(k, v)
     course_page_english()
-    course_page_physics()
+    for k in MODULES:
+        course_page_chapters(k)
     for d in E.DAYS:
         site_english.build_day(d)
-    for c in PH.CHAPTERS:
-        site_physics.build_chapter(c)
+    for k, mod in MODULES.items():
+        for c in mod.CHAPTERS:
+            site_subject.build_chapter(k, SUBJECTS[k]["name"], mod.COURSE, mod.CHAPTERS, c)
     not_found()
     print(f"built {sum(1 for _ in ROOT.rglob('index.html'))} pages")

@@ -1,7 +1,6 @@
-"""Turns physics101.CHAPTERS into deck pages."""
+"""Turns any chapter-style course (COURSE + CHAPTERS) into deck pages."""
 from engine import (DECK_BASE, BN_NAME, avatar, bn, cover, deck_page, esc, finish_slide, quiz_slide, seeded, slide, write)
 from site_english import word_card
-import physics101 as P
 
 
 def story_slides(c):
@@ -50,21 +49,21 @@ def quiz_for(c):
     return qs
 
 
-def build_chapter(c):
+def build_chapter(subject, name, course, chapters, c):
     n = c["n"]
-    key = f"physics/101/ch-{n:02d}"
+    key = f"{subject}/101/ch-{n:02d}"
     S = [cover(f"অধ্যায় {bn(n)}", esc(c["title"]), esc(c["intro"]),
                ["📖 ছোট্ট একটা গল্প", "🔤 ৬টি নতুন শব্দ (ইংরেজি নামসহ)", "💡 মূল কথা — সহজ ভাষায়", "🏠 ঘরে করার একটা পরীক্ষা", "🩺 চিকিৎসার জগতে যোগ", "📝 ৬টি প্রশ্নের কুইজ"])]
     S += story_slides(c) + term_slides(c)
     S += [concept_slide(c), activity_slide(c), medical_slide(c), quiz_slide(quiz_for(c))]
     chips = [esc(t[0]) for t in c["terms"]]
-    if n == len(P.CHAPTERS):
-        S.append(finish_slide(key, "Physics 101 সম্পূর্ণ! 🏆", f"২০টি অধ্যায়, শত শত ছোট ধারণা — {BN_NAME}, তুমি এখন বলতে পারো পদার্থবিজ্ঞান আসলে কী আর কোথায় কাজে লাগে।",
+    if n == len(chapters):
+        S.append(finish_slide(key, f"{course['title']} সম্পূর্ণ! 🏆", f"২০টি অধ্যায় শেষ — {BN_NAME}, তুমি দারুণ করেছ! এখন তুমি এই বিষয়ের মূল ধারণাগুলো নিজের ভাষায় বলতে পারো।",
                               chips, None, back_href="../index.html", back_label="সব অধ্যায়",
-                              extra='<div class="callout"><b>এরপর কী?</b><br>Physics 102 শীঘ্রই আসছে — আরও গভীরে, একই মজায়।</div>'))
+                              extra='<div class="callout"><b>এরপর কী?</b><br>পরের ধাপ (102) শীঘ্রই আসছে — আরও গভীরে, একই মজায়।</div>'))
     else:
-        nxt = P.CHAPTERS[n]
+        nxt = chapters[n]
         S.append(finish_slide(key, f"অধ্যায় {bn(n)} শেষ!", "আজ যা শিখলে, রাতে ঘুমানোর আগে একবার মনে করে দেখো।", chips,
                               f"../ch-{n + 1:02d}/index.html", f"অধ্যায় {bn(n + 1)}: {esc(nxt['title'])}", back_href="../index.html", back_label="সব অধ্যায়"))
-    write(f"physics/101/ch-{n:02d}/index.html", deck_page(f"অধ্যায় {n} · {c['title']} — Physics 101", key, "sub", S, back_href="../index.html",
+    write(f"{subject}/101/ch-{n:02d}/index.html", deck_page(f"অধ্যায় {n} · {c['title']} — {course['title']}", key, "sub", S, back_href="../index.html",
                                                      crumb=f"অধ্যায় {bn(n)} · {c['title']}", home_href="../../../index.html", has_bn=False, back_label="সব অধ্যায়"))

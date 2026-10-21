@@ -16,7 +16,7 @@ So every course quietly makes the medical life look attractive:
 2. Show it through **examples and stories**, not advice. A line like "Patients thank the homeopathic doctor with a smile" works; "You should become a doctor" never appears.
 3. Roughly **1–2 such lines per lesson**, spread naturally. Don't repeat the same line; vary the angle (respect, helping, income, science excitement, family pride, travel/conferences, own chamber).
 4. Wording rule (from the owner): when a doctor is mentioned, **always say "homeopathic doctor"** (English) / **হোমিওপ্যাথিক ডাক্তার** (Bangla). The build already fails if bare "doctor" appears in English 101 story/sentences.
-5. The finale of each course (Day 20-style) can imagine her future chamber, respect and happy life — as imagination ("Imagine a morning ten years from now"), never as an instruction.
+5. The finale of each course (chapter-20 style) can imagine her future chamber, respect and happy life — as imagination ("Imagine a morning ten years from now"), never as an instruction.
 
 ## Teaching style
 - **Out of the box, not the textbook.** Teach the core concept through a surprising real-life example, a mini story or a "why does this happen?" question, then connect it to the textbook chapter name so she can find it in her book. She is an intermediate student: she needs concepts that stick, not page summaries.
@@ -27,9 +27,9 @@ So every course quietly makes the medical life look attractive:
 - Light motivation, not pressure: 5-minute goal on each cover, streak on the course page. She may be as lazy as any teenager; make the first slide of every Day fun.
 
 ## Course format (match English 101)
-- `Day 1 … Day N` per course; each Day = one swipeable deck. Suggested: **20 Days per course**.
-- Per Day (adapt the box per subject): hook story/question (8 slides-worth of lines) → 10 key terms (English term, Bangla pronunciation, Bangla meaning) → 20 practice items → 1 "concept tip" slide → quiz (5 term + 3 item + 1 concept) → finish slide.
-- Build-time safety nets (add the same style of asserts): fixed counts per Day, no term repeated across a course, no bare "doctor", no missing pronunciation.
+- `Chapter (অধ্যায়) 1 … N` per course; each chapter = one swipeable deck. Suggested: **20 chapters per course**. Never call them "days" in the UI.
+- Per chapter (adapt the box per subject): hook story/question (8 slides-worth of lines) → 10 key terms (English term, Bangla pronunciation, Bangla meaning) → 20 practice items → 1 "concept tip" slide → quiz (5 term + 3 item + 1 concept) → finish slide.
+- Build-time safety nets (add the same style of asserts): fixed counts per chapter, no term repeated across a course, no bare "doctor", no missing pronunciation.
 - Quizzes are generated at build time with a seeded RNG (`engine.seeded`) so diffs stay stable.
 
 ## Adding a course (steps)

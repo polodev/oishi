@@ -46,7 +46,7 @@ def build_day(d):
     n = d["n"]
     key = f"english/101/day-{n:02d}"
     is_last = n == len(E.DAYS)
-    S = [cover(f"Day {n}", esc(d["en"]), f"<b>{esc(d['bn'])}</b> — {esc(d['intro'])}",
+    S = [cover(f"অধ্যায় {bn(n)}", esc(d["en"]), f"<b>{esc(d['bn'])}</b> — {esc(d['intro'])}",
                ["📖 একটি ছোট গল্প (৮ লাইন)", "🔤 ১০টি নতুন শব্দ, বাংলা উচ্চারণসহ", "💬 ২০টি দরকারি বাক্য", "✏️ একটি ব্যাকরণ টিপ", "📝 ৯টি প্রশ্নের কুইজ"])]
 
     for part, grp in enumerate(chunks(d["story"], 4), 1):
@@ -71,12 +71,12 @@ def build_day(d):
     chips = [esc(w[0]) for w in d["words"]]
     if is_last:
         S.append(finish_slide(key, "English 101 সম্পূর্ণ! 🏆", "২০ দিনে ২০০টি শব্দ আর ৪০০টি বাক্য — তুমি এখন নিজের পরিচয়, পরিবার, পড়াশোনা, শরীর, জীববিজ্ঞান, হোমিওপ্যাথিক চিকিৎসা আর স্বপ্নের কথা ইংরেজিতে বলতে পারো।",
-                              chips, None, back_href="../index.html",
-                              extra='<div class="callout"><b>এখন কী করবেন?</b><br>প্রতিদিন ৫ মিনিট পুরনো Day-র বাক্যগুলো জোরে বলো। English 102 শীঘ্রই আসছে।</div>'))
+                              chips, None, back_href="../index.html", back_label="সব অধ্যায়",
+                              extra='<div class="callout"><b>এখন কী করবেন?</b><br>প্রতিদিন ৫ মিনিট পুরনো অধ্যায়ের বাক্যগুলো জোরে বলো। English 102 শীঘ্রই আসছে।</div>'))
     else:
-        S.append(finish_slide(key, f"Day {bn(n)} শেষ!", "আজকের শব্দগুলো মনে রাখতে সারাদিন কয়েকবার বলুন।", chips,
-                              f"../day-{n + 1:02d}/index.html", f"Day {bn(n + 1)}: {esc(E.DAYS[n]['bn'])}"))
+        S.append(finish_slide(key, f"অধ্যায় {bn(n)} শেষ!", "আজকের শব্দগুলো মনে রাখতে সারাদিন কয়েকবার বলুন।", chips,
+                              f"../day-{n + 1:02d}/index.html", f"অধ্যায় {bn(n + 1)}: {esc(E.DAYS[n]['bn'])}", back_label="সব অধ্যায়"))
 
-    html = deck_page(f"Day {n} · {d['en']} — English 101", key, "en", S, back_href="../index.html",
-                     crumb=f"Day {bn(n)} · {d['bn']}", home_href="../../../index.html", has_bn=True)
+    html = deck_page(f"অধ্যায় {n} · {d['en']} — English 101", key, "en", S, back_href="../index.html",
+                     crumb=f"অধ্যায় {bn(n)} · {d['bn']}", home_href="../../../index.html", has_bn=True, back_label="সব অধ্যায়")
     write(f"english/101/day-{n:02d}/index.html", html)
