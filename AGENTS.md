@@ -6,10 +6,11 @@ Repo `polodev/oishi` → GitHub Pages `https://polodev.github.io/oishi/`.
 Before writing any lesson read **SUBJECT_GUIDE.md** (audience, hidden motivational goal, wording rule "homeopathic doctor", course format, roadmap).
 
 ## Structure
-Home → subject (English, Physics, Chemistry, Biology, Math, Bangla, ICT) → course (101 live only for English; 102/103 and every other subject course show 🔒 coming soon) → Day 1…20 (swipeable slide deck).
+Home → subject (English, Physics, Chemistry, Biology, Math, Bangla, ICT) → course (101 live for English and Physics; 102/103 and every other subject course show 🔒 coming soon) → Day 1…20 (swipeable slide deck).
 
 ## Files
 - `english101.py` — data (`day(n, en, bn, intro, story, words, sentences, grammar)`); asserts 8/10/20 lines, no repeated word, no bare "doctor".
+- `physics101.py` — Physics 101 data: 20 chapters (story 8 lines, 6 terms, concept, home activity, 2 positive medical lines, 6-question quiz); asserts counts and bans bare "ডাক্তার". `site_physics.py` builds the decks (`physics/101/ch-NN/`).
 - `pron_en.py` — Bangla pronunciation for every English word used in story/sentences; `build_line()`; the build fails on a missing word. Add new words to `_RAW`.
 - `site_english.py`, `engine.py`, `build.py`, `assets/app.css`, `assets/app.js` (no frameworks). Photos in `assets/img/` (EXIF stripped).
 

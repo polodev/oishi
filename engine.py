@@ -102,21 +102,21 @@ def quiz_slide(questions, title="কুইজ"):
     return slide(f'<span class="chip">📝 {esc(title)}</span><div class="quiz" data-quiz="{data}"></div>', "", title)
 
 
-def finish_slide(deck_key, heading, lead, chips, next_href=None, next_label="", back_href="../index.html", extra=""):
+def finish_slide(deck_key, heading, lead, chips, next_href=None, next_label="", back_href="../index.html", extra="", back_label="সব Day"):
     nxt = f'<a class="btn" href="{next_href}">{next_label} →</a>' if next_href else ""
     chip_html = "".join(f"<span>{c}</span>" for c in chips)
     return slide(f'<div class="finish">{avatar(DECK_BASE, "ava-big", small=False)}<h2>{heading}</h2><p class="hint">শাবাশ, {BN_NAME}! 🎉</p><p class="lead">{lead}</p>'
                  f'<div class="wordlist">{chip_html}</div>{extra}'
-                 f'<div class="btns">{nxt}<a class="btn ghost" href="{back_href}">সব Day</a></div></div>', "", "শেষ")
+                 f'<div class="btns">{nxt}<a class="btn ghost" href="{back_href}">{back_label}</a></div></div>', "", "শেষ")
 
 
-def deck_page(title, deck_key, theme, slides, back_href, crumb, home_href, has_bn=False, depth=3):
-    nav = ('<div id="top"><a href="{back}">← সব Day</a><span class="crumb">{crumb}</span><a href="{home}" class="me" aria-label="হোম">{ava}</a></div><div id="bar"></div>'
+def deck_page(title, deck_key, theme, slides, back_href, crumb, home_href, has_bn=False, depth=3, back_label="সব Day"):
+    nav = ('<div id="top"><a href="{back}">← {back_label}</a><span class="crumb">{crumb}</span><a href="{home}" class="me" aria-label="হোম">{ava}</a></div><div id="bar"></div>'
            '<main id="deck">{slides}</main>'
            '<nav id="nav"><button id="prev" aria-label="আগের">‹</button><span id="count"></span><button id="next" aria-label="পরের">›</button>'
            '<button id="slow" title="ধীরে বলুন" aria-label="ধীরে">🐢</button>{bn}'
            '<button id="theme" title="Dark mode" aria-label="Theme">◐</button></nav>').format(
-        back=back_href, crumb=esc(crumb), home=home_href, slides="\n".join(slides), ava=avatar('../' * depth, "ava"),
+        back=back_href, back_label=back_label, crumb=esc(crumb), home=home_href, slides="\n".join(slides), ava=avatar('../' * depth, "ava"),
         bn=('<button id="prBtn" title="উচ্চারণ লুকান" aria-label="উচ্চারণ লুকান">🔤</button>'
             '<button id="bnBtn" title="বাংলা অর্থ লুকান" aria-label="বাংলা অর্থ লুকান">👁</button>') if has_bn else "")
     attrs = f'data-deck="{deck_key}"'

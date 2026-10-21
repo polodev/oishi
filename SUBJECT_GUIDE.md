@@ -1,7 +1,7 @@
 # Subject guide — how to build the next courses for Oishi
 
-Read this before writing physics, chemistry, biology, math, bangla or ICT. English 101 is the reference implementation
-(`english101.py` → `site_english.py` → `build.py`).
+Read this before writing physics, chemistry, biology, math, bangla or ICT. English 101 and Physics 101 are the reference implementations
+(`english101.py` → `site_english.py`, `physics101.py` → `site_physics.py`, both wired in `build.py`). Physics 101 is the template for non-language subjects (story → terms → concept → home activity → medical link → quiz, no formula before chapter 7, class-five language).
 
 ## Who she is (facts only; all given by the owner)
 - Oishi Debnath, finished SSC, now studying HSC (intermediate), admitted to a homeopathic medical course.
@@ -43,7 +43,7 @@ So every course quietly makes the medical life look attractive:
 |---|---|---|---|
 | English | Stories about her life (**live**) | Reading medical/science passages, writing short paragraphs | Speaking & listening, interviews, formal letters, medical admission English |
 | Biology | Cell, tissue, human body systems told as stories | Genetics & DNA, immunity, plant biology | Microbes, evolution, ecology — with clinic scenes |
-| Physics | Motion, force, heat via body/hospital examples | Light & optics (glasses), waves, sound (ultrasound) | Electricity, magnetism, modern physics (X-ray) |
+| Physics | **Live (20 chapters):** matter, motion, speed, force, friction, gravity, pressure, energy, heat, sound, light, lenses, electricity, magnets, physics in medicine | Light & optics (glasses), waves, sound (ultrasound) | Electricity, magnetism, modern physics (X-ray) |
 | Chemistry | Atoms, acids/bases, pH of the stomach | Reactions, solutions, organic basics | Biochemistry: vitamins, proteins, medicines |
 | Math | Numbers, algebra via dosage and BMI | Functions, trigonometry, geometry | Statistics, probability, calculus basics |
 | Bangla | Reading and writing short essays with warm themes | Grammar, composition, letters | Literature appreciation |
